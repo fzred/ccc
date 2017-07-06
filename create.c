@@ -21,13 +21,13 @@ Expression createBinaryExpression(ExpressionType expressionType,
                                   Expression right)
 {
   Expression exp;
-  bool isDouble = false;
+  int isDouble = 0;
   if ((left.type == INT_EXPRESSION || left.type == DOUBLE_EXPRESSION) &&
       (right.type == INT_EXPRESSION || right.type == DOUBLE_EXPRESSION))
   {
     if (left.type == DOUBLE_EXPRESSION || right.type == DOUBLE_EXPRESSION)
     {
-      isDouble = true;
+      isDouble = 1;
     }
   }
 

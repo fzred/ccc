@@ -1,6 +1,7 @@
 {
   "files.associations": {
     "ccc.h": "c",
-    "stdio.h": "c"
+    "stdio.h": "c",
+    "kmod.h": "c"
   }
 }

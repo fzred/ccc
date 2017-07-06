@@ -4,6 +4,11 @@
 #include <stdio.h>
 
 typedef enum {
+  CRB_FALSE = 0,
+  CRB_TRUE = 1
+} CRB_Boolean;
+
+typedef enum {
   INT_EXPRESSION,
   DOUBLE_EXPRESSION,
   ADD_EXPRESSION,
@@ -21,41 +26,39 @@ typedef enum {
   LOGICAL_OR_EXPRESSION,
 } ExpressionType;
 
-struct Expression
+typedef struct
 {
   ExpressionType type;
   union {
-    Boolean booleanValue;
+    CRB_Boolean booleanValue;
     int intValue;
     double doubleValue;
     char *stringValue;
   } u;
-};
+} Expression;
 
-struct StatementType
-{
-  EXPRESSION_STATEMENT = 1,
-};
+typedef enum {
+  EXPRESSION_STATEMENT = 1
+} StatementType;
 
-struct Statement
+typedef struct
 {
   StatementType type;
   union {
     Expression expression;
   } u;
-};
+} Statement;
 
-struct statementList
+typedef struct StatementList_tag
 {
   Statement statement;
-  statementList next;
-};
+  struct StatementList_tag next;
+} StatementList;
 
 struct Interpreter
 {
   StatementList statementList;
 };
-
 
 Expression createBinaryExpression(ExpressionType expressionType,
                                   Expression left,
