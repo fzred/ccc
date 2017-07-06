@@ -56,4 +56,14 @@ struct Interpreter
   StatementList statementList;
 };
 
+
+Expression createBinaryExpression(ExpressionType expressionType,
+                                  Expression left,
+                                  Expression right);
+
+Expression createIntLiteralExpression(int value);
+
+Expression createDoubleLiteralExpression(int value);
+
+
 #endif

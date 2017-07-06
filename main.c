@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include "ccc.h"
 
-extern Interpreter currentInterter;
+Interpreter currentInterter;
 extern int yyparse(void);
 
 int main(int argc, char **argv)
