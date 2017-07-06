@@ -33,7 +33,7 @@ int yywrap(void)
 <INITIAL>([1-9][0-9]*)|"0" {
   int *v;
   sscanf(yytext, "%d", &v);
-  yylval.expression = createIntLiteralExpression(&v);
+  yylval.expression = createIntLiteralExpression(v);
   return INT_LITERAL;
 }
 <INITIAL>[0-9]+\.[0-9]+ {

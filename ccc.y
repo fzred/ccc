@@ -20,6 +20,10 @@ statement
   {
     printExpression($1);
   }
+  | statement expression CR
+  {
+    printExpression($2);
+  }
   ;
 expression
   : additiveExpression

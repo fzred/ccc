@@ -6,6 +6,7 @@
     "mach_port.h": "c",
     "math.h": "c",
     "message.h": "c",
-    "rpc.h": "c"
+    "rpc.h": "c",
+    "y.tab.h": "c"
   }
 }

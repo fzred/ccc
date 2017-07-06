@@ -35,6 +35,8 @@ Expression createBinaryExpression(ExpressionType expressionType,
   if (isDouble)
   {
     exp.type = DOUBLE_EXPRESSION;
+  }else{
+    exp.type = INT_EXPRESSION;
   }
 
   if (expressionType == ADD_EXPRESSION)

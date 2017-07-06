@@ -6,7 +6,7 @@ CFLAGS = -c -g -Wall -Wswitch-enum -ansi -pedantic -DDEBUG
 INCLUDES = \
 
 $(TARGET) : $(OBJS)
-	$(CC) $(OBJS)
+	$(CC) -g $(OBJS)
 
 clean :
 	rm -f *.o lex.yy.c y.tab.c y.tab.h
