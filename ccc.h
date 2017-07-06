@@ -65,5 +65,6 @@ Expression createIntLiteralExpression(int value);
 
 Expression createDoubleLiteralExpression(int value);
 
+void printExpression(Expression expression);
 
 #endif
