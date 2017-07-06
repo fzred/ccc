@@ -23,6 +23,8 @@
 <INITIAL>"*"            return MUL;
 <INITIAL>"/"            return DIV;
 <INITIAL>"%"            return MOD;
+<INITIAL>"\n"           return CR;
+
 <INITIAL>([1-9][0-9]*)|"0" {
   return INT_LITERAL;
 }
