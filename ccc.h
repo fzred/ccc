@@ -52,13 +52,13 @@ typedef struct
 typedef struct StatementList_tag
 {
   Statement statement;
-  struct StatementList_tag next;
+  struct StatementList_tag *next;
 } StatementList;
 
-struct Interpreter
+typedef struct
 {
   StatementList statementList;
-};
+} Interpreter;
 
 Expression createBinaryExpression(ExpressionType expressionType,
                                   Expression left,
@@ -66,7 +66,7 @@ Expression createBinaryExpression(ExpressionType expressionType,
 
 Expression createIntLiteralExpression(int value);
 
-Expression createDoubleLiteralExpression(int value);
+Expression createDoubleLiteralExpression(double value);
 
 void printExpression(Expression expression);
 

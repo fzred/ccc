@@ -1,8 +1,13 @@
 %{
-  int yywrap(void)
-  {
-    return 1;
-  }
+#include <stdio.h>
+#include <string.h>
+#include "ccc.h"
+#include "y.tab.h"
+
+int yywrap(void)
+{
+  return 1;
+}
 %}
 %%
 <INITIAL>"("            return LP;
@@ -26,6 +31,9 @@
 <INITIAL>"\n"           return CR;
 
 <INITIAL>([1-9][0-9]*)|"0" {
+  int *v;
+  sscanf(yytext, "%d", &v);
+  yylval.expression = createIntLiteralExpression(&v);
   return INT_LITERAL;
 }
 <INITIAL>[0-9]+\.[0-9]+ {

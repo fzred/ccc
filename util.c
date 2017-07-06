@@ -5,10 +5,10 @@ void printExpression(Expression expression)
 {
   if (expression.type == INT_EXPRESSION)
   {
-    printf('%d\n', expression.intValue);
+    printf("%d\n", expression.u.intValue);
   }
   if (expression.type == DOUBLE_EXPRESSION)
   {
-    printf('%f\n', expression.doubleValue);
+    printf("%f\n", expression.u.doubleValue);
   }
 }

@@ -1,18 +1,19 @@
+#include <math.h>
 #include "ccc.h"
 
 Expression createIntLiteralExpression(int value)
 {
   Expression exp;
   exp.type = INT_EXPRESSION;
-  exp.intValue = value;
+  exp.u.intValue = value;
   return exp;
 }
 
-Expression createDoubleLiteralExpression(int value)
+Expression createDoubleLiteralExpression(double value)
 {
   Expression exp;
   exp.type = DOUBLE_EXPRESSION;
-  exp.doubleValue = value;
+  exp.u.doubleValue = value;
   return exp;
 }
 
@@ -40,11 +41,11 @@ Expression createBinaryExpression(ExpressionType expressionType,
   {
     if (isDouble)
     {
-      exp.doubleValue = left.doubleValue + right.doubleValue;
+      exp.u.doubleValue = left.u.doubleValue + right.u.doubleValue;
     }
     else
     {
-      exp.intValue = left.intValue + right.intValue;
+      exp.u.intValue = left.u.intValue + right.u.intValue;
     }
   }
 
@@ -52,11 +53,11 @@ Expression createBinaryExpression(ExpressionType expressionType,
   {
     if (isDouble)
     {
-      exp.doubleValue = left.doubleValue - right.doubleValue;
+      exp.u.doubleValue = left.u.doubleValue - right.u.doubleValue;
     }
     else
     {
-      exp.intValue = left.intValue - right.intValue;
+      exp.u.intValue = left.u.intValue - right.u.intValue;
     }
   }
 
@@ -64,11 +65,11 @@ Expression createBinaryExpression(ExpressionType expressionType,
   {
     if (isDouble)
     {
-      exp.doubleValue = left.doubleValue * right.doubleValue;
+      exp.u.doubleValue = left.u.doubleValue * right.u.doubleValue;
     }
     else
     {
-      exp.intValue = left.intValue * right.intValue;
+      exp.u.intValue = left.u.intValue * right.u.intValue;
     }
   }
 
@@ -76,11 +77,11 @@ Expression createBinaryExpression(ExpressionType expressionType,
   {
     if (isDouble)
     {
-      exp.doubleValue = left.doubleValue / right.doubleValue;
+      exp.u.doubleValue = left.u.doubleValue / right.u.doubleValue;
     }
     else
     {
-      exp.intValue = left.intValue / right.intValue;
+      exp.u.intValue = left.u.intValue / right.u.intValue;
     }
   }
 
@@ -88,11 +89,11 @@ Expression createBinaryExpression(ExpressionType expressionType,
   {
     if (isDouble)
     {
-      exp.doubleValue = left.doubleValue % right.doubleValue;
+      exp.u.doubleValue = fmod(left.u.doubleValue, right.u.doubleValue);
     }
     else
     {
-      exp.intValue = left.intValue % right.intValue;
+      exp.u.intValue = left.u.intValue % right.u.intValue;
     }
   }
 
