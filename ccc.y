@@ -5,7 +5,6 @@
 %}
 %union {
   Expression expression;
-  StatementList statementList;
 }
 %token <expression>     INT_LITERAL
 %token <expression>     DOUBLE_LITERAL
@@ -13,7 +12,7 @@
         LP RP LC RC SEMICOLON COMMA ASSIGN LOGICAL_AND LOGICAL_OR
         EQ NE GT GE LT LE ADD SUB MUL DIV MOD TRUE_T FALSE_T GLOBAL_T
         DOUBLE_LITERAL INT_LITERAL CR
-%type <expression> expression additiveExpression multiplicativeExpression
+%type  <expression> expression additiveExpression multiplicativeExpression
                     primaryExpression
 %%
 statement

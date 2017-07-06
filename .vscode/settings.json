@@ -2,6 +2,10 @@
   "files.associations": {
     "ccc.h": "c",
     "stdio.h": "c",
-    "kmod.h": "c"
+    "kmod.h": "c",
+    "mach_port.h": "c",
+    "math.h": "c",
+    "message.h": "c",
+    "rpc.h": "c"
   }
 }

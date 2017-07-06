@@ -1,7 +1,9 @@
 TARGET = ccc
 CC = gcc
-OBJS = y.tab.h y.tab.c lex.yy.c util.c main.c create.c ccc.h
+OBJS = lex.yy.o y.tab.o util.c main.c create.c ccc.h
 
+CFLAGS = -c -g -Wall -Wswitch-enum -ansi -pedantic -DDEBUG
+INCLUDES = \
 
 $(TARGET) : $(OBJS)
 	$(CC) $(OBJS)
@@ -14,3 +16,9 @@ y.tab.c : ccc.y
 	bison --yacc -dv ccc.y
 lex.yy.c : ccc.l ccc.y y.tab.h
 	flex ccc.l
+y.tab.o: y.tab.c ccc.h
+	$(CC) -c -g $*.c $(INCLUDES)
+lex.yy.o: lex.yy.c ccc.h
+	$(CC) -c -g $*.c $(INCLUDES)
+.c.o:
+	$(CC) $(CFLAGS) $*.c $(INCLUDES)
