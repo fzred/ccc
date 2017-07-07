@@ -4,14 +4,16 @@
 #define YYDEBUG 1
 %}
 %union {
-  Expression expression;
+ char                *identifier;
+ Expression          expression;
 }
 %token <expression>  INT_LITERAL
 %token <expression>  DOUBLE_LITERAL
+%token <identifier>  IDENTIFIER
 %token FUNCTION IF ELSE ELSIF WHILE FOR RETURN_T BREAK CONTINUE NULL_T
         LP RP LC RC SEMICOLON COMMA ASSIGN LOGICAL_AND LOGICAL_OR
         EQ NE GT GE LT LE ADD SUB MUL DIV MOD TRUE_T FALSE_T GLOBAL_T
-        DOUBLE_LITERAL INT_LITERAL CR
+        DOUBLE_LITERAL INT_LITERAL CR IDENTIFIER
 %type  <expression> expression additiveExpression multiplicativeExpression
                     primaryExpression
 %%

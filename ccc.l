@@ -40,4 +40,11 @@ int yywrap(void)
   yylval.expression = createDoubleLiteralExpression(v);
   return DOUBLE_LITERAL;
 }
+
+<INITIAL>[A-Za-z_][A-Za-z_0-9]* {
+  char *newStr;
+  strcpy(newStr, yytext);
+  yylval.identifier = newStr;
+  return IDENTIFIER;
+}
 %%

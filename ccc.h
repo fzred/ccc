@@ -3,10 +3,12 @@
 
 #include <stdio.h>
 
+typedef struct Expression_tag Expression;
+
 typedef enum {
-  CRB_FALSE = 0,
-  CRB_TRUE = 1
-} CRB_Boolean;
+  CCC_FALSE = 0,
+  CCC_TRUE = 1
+} CCC_Boolean;
 
 typedef enum {
   INT_EXPRESSION,
@@ -24,22 +26,50 @@ typedef enum {
   LE_EXPRESSION,
   LOGICAL_AND_EXPRESSION,
   LOGICAL_OR_EXPRESSION,
+  IDENTIFIER_EXPRESSION
 } ExpressionType;
 
 typedef struct
 {
+  char *variable;
+  Expression *operand;
+} AssignExpression;
+
+struct Expression_tag
+{
   ExpressionType type;
   union {
-    CRB_Boolean booleanValue;
+    CCC_Boolean booleanValue;
     int intValue;
     double doubleValue;
     char *stringValue;
+    char *identifier;
+    AssignExpression assignExpression;
   } u;
-} Expression;
+};
 
 typedef enum {
   EXPRESSION_STATEMENT = 1
 } StatementType;
+
+typedef enum {
+  BOOLEAN_VALUE,
+  INT_VALUE,
+  DOUBLE_VALUE,
+  STRING_VALUE,
+  NULL_VALUE
+} ValueType;
+
+typedef struct
+{
+  ValueType type;
+  union {
+    CCC_Boolean booleanValue;
+    int intValue;
+    double doubleValue;
+    char *stringValue;
+  } u;
+} Value;
 
 typedef struct
 {
@@ -55,8 +85,16 @@ typedef struct StatementList_tag
   struct StatementList_tag *next;
 } StatementList;
 
+typedef struct Variable_tag
+{
+  char *name;
+  Value value;
+  struct Variable_tag *next;
+} Variable;
+
 typedef struct
 {
+  Variable *variable;
   StatementList statementList;
 } Interpreter;
 
