@@ -31,12 +31,13 @@ int yywrap(void)
 <INITIAL>"\n"           return CR;
 
 <INITIAL>([1-9][0-9]*)|"0" {
-  int *v;
-  sscanf(yytext, "%d", &v);
+  int v = atoi(yytext);
   yylval.expression = createIntLiteralExpression(v);
   return INT_LITERAL;
 }
 <INITIAL>[0-9]+\.[0-9]+ {
+  double v = atof(yytext);
+  yylval.expression = createDoubleLiteralExpression(v);
   return DOUBLE_LITERAL;
 }
 %%

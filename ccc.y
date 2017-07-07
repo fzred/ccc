@@ -6,8 +6,8 @@
 %union {
   Expression expression;
 }
-%token <expression>     INT_LITERAL
-%token <expression>     DOUBLE_LITERAL
+%token <expression>  INT_LITERAL
+%token <expression>  DOUBLE_LITERAL
 %token FUNCTION IF ELSE ELSIF WHILE FOR RETURN_T BREAK CONTINUE NULL_T
         LP RP LC RC SEMICOLON COMMA ASSIGN LOGICAL_AND LOGICAL_OR
         EQ NE GT GE LT LE ADD SUB MUL DIV MOD TRUE_T FALSE_T GLOBAL_T
@@ -20,7 +20,15 @@ statement
   {
     printExpression($1);
   }
+  | expression
+  {
+    printExpression($1);
+  }
   | statement expression CR
+  {
+    printExpression($2);
+  }
+  | statement expression
   {
     printExpression($2);
   }
@@ -56,5 +64,6 @@ primaryExpression
     $$ = $2;
   }
   | INT_LITERAL
+  | DOUBLE_LITERAL
   ;
 %%

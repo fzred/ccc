@@ -7,6 +7,7 @@
     "math.h": "c",
     "message.h": "c",
     "rpc.h": "c",
-    "y.tab.h": "c"
+    "y.tab.h": "c",
+    "stdlib.h": "c"
   }
 }
