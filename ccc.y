@@ -6,6 +6,7 @@
 %union {
  char                *identifier;
  Expression          expression;
+ Statement           statement;
 }
 %token <expression>  INT_LITERAL
 %token <expression>  DOUBLE_LITERAL
@@ -16,27 +17,30 @@
         DOUBLE_LITERAL INT_LITERAL CR IDENTIFIER
 %type  <expression> expression additiveExpression multiplicativeExpression
                     primaryExpression
+%type  <statement>  statement
 %%
+definition_or_statement
+  : statement
+  {
+    extern Interpreter inter;
+    inter.statementList = chainStatemengList(inter.statementList, $1);
+  }
 statement
   : expression CR
   {
-    printExpression($1);
+    $$ = createExpressionStatement($1);
   }
   | expression
   {
-    printExpression($1);
-  }
-  | statement expression CR
-  {
-    printExpression($2);
-  }
-  | statement expression
-  {
-    printExpression($2);
+    $$ = createExpressionStatement($1);
   }
   ;
 expression
   : additiveExpression
+  | IDENTIFIER ASSIGN expression
+  {
+    $$ = createAssignExpression($1, &$3);
+  }
   ;
 additiveExpression
   : multiplicativeExpression

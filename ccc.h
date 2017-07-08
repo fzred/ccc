@@ -26,7 +26,8 @@ typedef enum {
   LE_EXPRESSION,
   LOGICAL_AND_EXPRESSION,
   LOGICAL_OR_EXPRESSION,
-  IDENTIFIER_EXPRESSION
+  IDENTIFIER_EXPRESSION,
+  ASSIGN_EXPRESSION
 } ExpressionType;
 
 typedef struct
@@ -95,7 +96,7 @@ typedef struct Variable_tag
 typedef struct
 {
   Variable *variable;
-  StatementList statementList;
+  StatementList *statementList;
 } Interpreter;
 
 Expression createBinaryExpression(ExpressionType expressionType,
@@ -105,6 +106,12 @@ Expression createBinaryExpression(ExpressionType expressionType,
 Expression createIntLiteralExpression(int value);
 
 Expression createDoubleLiteralExpression(double value);
+
+Expression createAssignExpression(char *variable, Expression *operand);
+
+Statement createExpressionStatement(Expression expression);
+
+StatementList *chainStatemengList(StatementList *statementList, Statement statement);
 
 void printExpression(Expression expression);
 

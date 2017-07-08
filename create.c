@@ -35,7 +35,9 @@ Expression createBinaryExpression(ExpressionType expressionType,
   if (isDouble)
   {
     exp.type = DOUBLE_EXPRESSION;
-  }else{
+  }
+  else
+  {
     exp.type = INT_EXPRESSION;
   }
 
@@ -100,4 +102,43 @@ Expression createBinaryExpression(ExpressionType expressionType,
   }
 
   return exp;
+}
+
+Expression createAssignExpression(char *variable, Expression *operand)
+{
+  Expression exp;
+  exp.type = ASSIGN_EXPRESSION;
+  exp.u.assignExpression.variable = variable;
+  exp.u.assignExpression.operand = operand;
+  return exp;
+}
+
+Statement createExpressionStatement(Expression expression)
+{
+  Statement statement;
+  statement.type = EXPRESSION_STATEMENT;
+  statement.u.expression = expression;
+  return statement;
+}
+
+StatementList *createStatamentList(Statement statement)
+{
+  StatementList *list;
+  list->statement = statement;
+  return list;
+}
+
+StatementList *chainStatemengList(StatementList *statementList, Statement statement)
+{
+  if (statementList == NULL)
+  {
+    return createStatamentList(statement);
+  }
+  StatementList *pos;
+  for (pos = statementList; pos->next; pos = pos->next)
+    ;
+
+  pos->next = createStatamentList(statement);
+
+  return statementList;
 }
