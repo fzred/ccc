@@ -45,7 +45,7 @@ struct Expression_tag
     double doubleValue;
     char *stringValue;
     char *identifier;
-    AssignExpression assignExpression;
+    AssignExpression *assignExpression;
   } u;
 };
 
@@ -117,17 +117,17 @@ typedef struct
   StatementList *statementList;
 } Interpreter;
 
-Expression createBinaryExpression(ExpressionType expressionType,
-                                  Expression left,
-                                  Expression right);
+Expression *createBinaryExpression(ExpressionType expressionType,
+                                  Expression *left,
+                                  Expression *right);
 
-Expression createIntLiteralExpression(int value);
+Expression *createIntLiteralExpression(int value);
 
-Expression createDoubleLiteralExpression(double value);
+Expression *createDoubleLiteralExpression(double value);
 
-Expression createAssignExpression(char *variable, Expression *operand);
+Expression *createAssignExpression(char *variable, Expression *operand);
 
-Statement *createExpressionStatement(Expression expression);
+Statement *createExpressionStatement(Expression *expression);
 
 StatementList *chainStatemengList(StatementList *statementList, Statement *statement);
 

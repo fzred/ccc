@@ -5,7 +5,7 @@
 %}
 %union {
  char                *identifier;
- Expression          expression;
+ Expression          *expression;
  Statement           *statement;
 }
 %token <expression>  INT_LITERAL
