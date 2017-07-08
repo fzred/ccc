@@ -17,13 +17,18 @@
         DOUBLE_LITERAL INT_LITERAL CR IDENTIFIER
 %type  <expression> expression additiveExpression multiplicativeExpression
                     primaryExpression
-%type  <statement>  statement
+%type  <statement>  statement definition_or_statement
 %%
 definition_or_statement
   : statement
   {
-    extern Interpreter inter;
-    inter.statementList = chainStatemengList(inter.statementList, $1);
+    interAddStatement($1);
+    $$ = $1;
+  }
+  | definition_or_statement statement
+  {
+    interAddStatement($1);
+    $$ = $1;
   }
 statement
   : expression CR

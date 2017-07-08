@@ -113,6 +113,10 @@ Statement createExpressionStatement(Expression expression);
 
 StatementList *chainStatemengList(StatementList *statementList, Statement statement);
 
+Interpreter getCurInterpreter();
+
+void interAddStatement(Statement statement);
+
 void printExpression(Expression expression);
 
 #endif

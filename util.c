@@ -1,6 +1,13 @@
 #include <stdio.h>
 #include "ccc.h"
 
+
+Interpreter curInterter;
+
+Interpreter getCurInterpreter(){
+  return curInterter;
+}
+
 void printExpression(Expression expression)
 {
   if (expression.type == INT_EXPRESSION)

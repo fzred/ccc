@@ -1,6 +1,6 @@
 TARGET = ccc
 CC = gcc
-OBJS = lex.yy.o y.tab.o util.c main.c create.c ccc.h
+OBJS = lex.yy.o y.tab.o util.c main.c create.c ccc.h execute.c
 
 CFLAGS = -c -g -Wall -Wswitch-enum -ansi -pedantic -DDEBUG
 INCLUDES = \

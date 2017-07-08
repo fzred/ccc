@@ -1,3 +1,4 @@
+#include <stdlib.h>
 #include <math.h>
 #include "ccc.h"
 
@@ -124,6 +125,7 @@ Statement createExpressionStatement(Expression expression)
 StatementList *createStatamentList(Statement statement)
 {
   StatementList *list;
+  list = (StatementList*)malloc(sizeof(StatementList));
   list->statement = statement;
   return list;
 }
@@ -141,4 +143,10 @@ StatementList *chainStatemengList(StatementList *statementList, Statement statem
   pos->next = createStatamentList(statement);
 
   return statementList;
+}
+
+void interAddStatement(Statement statement)
+{
+  Interpreter inter = getCurInterpreter();
+  inter.statementList = chainStatemengList(inter.statementList, statement);
 }
