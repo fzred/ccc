@@ -114,27 +114,33 @@ Expression createAssignExpression(char *variable, Expression *operand)
   return exp;
 }
 
-Statement createExpressionStatement(Expression expression)
+Statement *createExpressionStatement(Expression expression)
 {
-  Statement statement;
-  statement.type = EXPRESSION_STATEMENT;
-  statement.u.expression = expression;
+  Statement *statement;
+  statement = (Statement *)malloc(sizeof(Statement));
+  statement->type = EXPRESSION_STATEMENT;
+  statement->u.expression = &expression;
   return statement;
 }
 
-StatementList *createStatamentList(Statement statement)
+StatementList *createStatamentList(Statement *statement)
 {
   StatementList *list;
-  list = (StatementList*)malloc(sizeof(StatementList));
+  list = (StatementList *)malloc(sizeof(StatementList));
   list->statement = statement;
+  list->next = NULL;
+  printf("%p\n", list);
   return list;
 }
 
-StatementList *chainStatemengList(StatementList *statementList, Statement statement)
+StatementList *chainStatemengList(StatementList *statementList, Statement *statement)
 {
   if (statementList == NULL)
   {
-    return createStatamentList(statement);
+    StatementList *list;
+    list = createStatamentList(statement);
+    printf("%p\n", list);
+    return list;
   }
   StatementList *pos;
   for (pos = statementList; pos->next; pos = pos->next)
@@ -145,8 +151,12 @@ StatementList *chainStatemengList(StatementList *statementList, Statement statem
   return statementList;
 }
 
-void interAddStatement(Statement statement)
+void interAddStatement(Statement *statement)
 {
-  Interpreter inter = getCurInterpreter();
-  inter.statementList = chainStatemengList(inter.statementList, statement);
+  Interpreter *inter;
+  inter = getCurInterpreter();
+  StatementList *list;
+  list = chainStatemengList(inter->statementList, statement);
+  printf("%p\n", list);
+  inter->statementList = list;
 }

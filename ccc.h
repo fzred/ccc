@@ -72,17 +72,19 @@ typedef struct
   } u;
 } Value;
 
-typedef struct
+struct Statement_tag
 {
   StatementType type;
   union {
-    Expression expression;
+    Expression *expression;
   } u;
-} Statement;
+};
+
+typedef struct Statement_tag Statement;
 
 typedef struct StatementList_tag
 {
-  Statement statement;
+  Statement *statement;
   struct StatementList_tag *next;
 } StatementList;
 
@@ -92,6 +94,22 @@ typedef struct Variable_tag
   Value value;
   struct Variable_tag *next;
 } Variable;
+
+typedef enum {
+  NORMAL_STATEMENT_RESULT = 1,
+  RETURN_STATEMENT_RESULT,
+  BREAK_STATEMENT_RESULT,
+  CONTINUE_STATEMENT_RESULT,
+  STATEMENT_RESULT_TYPE_COUNT_PLUS_1
+} StatementResultType;
+
+typedef struct
+{
+  StatementResultType type;
+  union {
+    Value returnValue;
+  } u;
+} StatementResult;
 
 typedef struct
 {
@@ -109,14 +127,16 @@ Expression createDoubleLiteralExpression(double value);
 
 Expression createAssignExpression(char *variable, Expression *operand);
 
-Statement createExpressionStatement(Expression expression);
+Statement *createExpressionStatement(Expression expression);
 
-StatementList *chainStatemengList(StatementList *statementList, Statement statement);
+StatementList *chainStatemengList(StatementList *statementList, Statement *statement);
 
-Interpreter getCurInterpreter();
+Interpreter *getCurInterpreter();
 
-void interAddStatement(Statement statement);
+void interAddStatement(Statement *statement);
 
-void printExpression(Expression expression);
+void printExpression(Expression *expression);
+
+StatementResult executeStatementList(StatementList *list);
 
 #endif

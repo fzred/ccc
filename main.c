@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include "ccc.h"
 
-Interpreter currentInterter;
 extern int yyparse(void);
 extern FILE *yyin;
 
@@ -30,5 +29,9 @@ int main(int argc, char **argv)
     fprintf(stderr, "Error ! Error ! Error !\n");
     exit(1);
   }
+
+  Interpreter *inter = getCurInterpreter();
+  executeStatementList(inter->statementList);
+
   return 0;
 }

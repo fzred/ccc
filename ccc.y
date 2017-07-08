@@ -6,7 +6,7 @@
 %union {
  char                *identifier;
  Expression          expression;
- Statement           statement;
+ Statement           *statement;
 }
 %token <expression>  INT_LITERAL
 %token <expression>  DOUBLE_LITERAL
