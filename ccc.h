@@ -11,7 +11,7 @@ typedef enum {
 } CCC_Boolean;
 
 typedef enum {
-  INT_EXPRESSION,
+  INT_EXPRESSION = 1,
   DOUBLE_EXPRESSION,
   ADD_EXPRESSION,
   SUB_EXPRESSION,
@@ -138,5 +138,7 @@ void interAddStatement(Statement *statement);
 void printExpression(Expression *expression);
 
 StatementResult executeStatementList(StatementList *list);
+
+Value evalAssignExpression(Expression *expression);
 
 #endif

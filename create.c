@@ -147,9 +147,6 @@ StatementList *chainStatemengList(StatementList *statementList, Statement *state
   }
   StatementList *pos;
   for (pos = statementList; pos->next; pos = pos->next)
-  {
-    printf("%p\n", pos);
-  }
     ;
 
   pos->next = createStatamentList(statement);

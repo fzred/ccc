@@ -27,7 +27,7 @@ definition_or_statement
   }
   | definition_or_statement statement
   {
-    interAddStatement($1);
+    interAddStatement($2);
     $$ = $1;
   }
 statement

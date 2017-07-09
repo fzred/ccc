@@ -43,6 +43,7 @@ int yywrap(void)
 
 <INITIAL>[A-Za-z_][A-Za-z_0-9]* {
   char *newStr;
+  newStr = malloc(strlen(yytext) + 1);
   strcpy(newStr, yytext);
   yylval.identifier = newStr;
   return IDENTIFIER;

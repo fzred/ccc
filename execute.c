@@ -3,7 +3,18 @@
 
 void executeExpression(Expression *expression)
 {
-  printExpression(expression);
+  switch (expression->type)
+  {
+  case INT_EXPRESSION:
+  case DOUBLE_EXPRESSION:
+    printExpression(expression);
+    break;
+  case ASSIGN_EXPRESSION:
+  evalAssignExpression(expression);
+    break;
+  default:
+    break;
+  }
 }
 
 StatementResult executeStatement(Statement *statement)
