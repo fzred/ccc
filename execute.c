@@ -10,7 +10,7 @@ void executeExpression(Expression *expression)
     printExpression(expression);
     break;
   case ASSIGN_EXPRESSION:
-  evalAssignExpression(expression);
+    evalAssignExpression(expression);
     break;
   default:
     break;

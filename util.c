@@ -10,6 +10,7 @@ Interpreter *getCurInterpreter()
   {
     curInterter = (Interpreter *)malloc(sizeof(Interpreter));
     curInterter->statementList = NULL;
+    curInterter->variable = NULL;
   }
   return curInterter;
 }

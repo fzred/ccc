@@ -48,4 +48,7 @@ int yywrap(void)
   yylval.identifier = newStr;
   return IDENTIFIER;
 }
+
+<INITIAL>. {
+}
 %%
