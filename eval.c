@@ -15,6 +15,10 @@ Variable *searchGlobalVariable(Interpreter *inter, char *name)
   return NULL;
 }
 
+Value evalExpression(Interpreter *inter, Expression *expression)
+{
+}
+
 Value evalAssignExpression(Expression *expression)
 {
   Value v;

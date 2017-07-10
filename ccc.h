@@ -36,6 +36,11 @@ typedef struct
   Expression *operand;
 } AssignExpression;
 
+typedef struct {
+    Expression  *left;
+    Expression  *right;
+} BinaryExpression;
+
 struct Expression_tag
 {
   ExpressionType type;
@@ -46,6 +51,7 @@ struct Expression_tag
     char *stringValue;
     char *identifier;
     AssignExpression *assignExpression;
+    BinaryExpression binaryExpression;
   } u;
 };
 
